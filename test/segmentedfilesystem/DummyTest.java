@@ -13,7 +13,11 @@ public class DummyTest {
 
     @Test
     public void test() {
-        fail("Not yet implemented");
+      diff binary.jpg ../test/target-files/binary.jpg
     }
-
+    
+    @Test
+    public void test2() {
+        bats test/client_tests.bats    
+    }
 }
