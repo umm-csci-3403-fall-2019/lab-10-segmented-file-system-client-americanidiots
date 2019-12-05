@@ -30,6 +30,8 @@ public class Main {
             System.err.println("Couldn't open quote file.  Serving time instead.");
         }
     }  
+        writeFile();
+        isDone();
         socket.close();
     }
 }
