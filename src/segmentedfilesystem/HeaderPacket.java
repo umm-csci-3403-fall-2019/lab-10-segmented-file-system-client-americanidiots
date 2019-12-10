@@ -13,7 +13,8 @@ import javax.sound.sampled.Port;
 import javax.xml.crypto.Data;
 
 public class HeaderPacket{
-    public getFileName(){
+    public byte[] getFileName(HeaderPacket p){
+        byte[] buf =Packet.fileContents;
 
     }
 

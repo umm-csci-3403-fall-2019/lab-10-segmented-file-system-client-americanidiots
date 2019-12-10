@@ -1,44 +1,33 @@
 package segmentedfilesystem;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.Socket;
-import java.nio.Buffer;
-import java.util.Map;
-import java.util.HashMap;
-
-import javax.sound.sampled.Port;
-import javax.xml.crypto.Data;
-
 //Packet file should make packet
 //packet file should store packet file num
 
-public class Packet {
-    int fileNum;
-    String packetType;
-    Byte[] fileContents = new Buffer[1028];
+import java.net.DatagramPacket;
 
-    Packet(int fileNum, String packetType, Byte[] fileContents){
+public class Packet {
+    static int fileNum;
+    static String packetType;
+    static byte[] fileContents;
+
+    Packet(int fileNum, String packetType, byte[] fileContents){
         this.fileNum = fileNum;
         this.packetType = packetType;
         this.fileContents = fileContents;
     }
     
  
- public makePacket(byte[] buf){
-     fileNum=buf[1];
-     fileContents=buf;
+ public static Packet makePacket(DatagramPacket p) {
+     fileContents = p.getData();
+     fileNum = fileContents[1];
 
-     if(buf[0]%2 == 0){
+     if (fileContents[0] % 2 == 0) {
          packetType = "HeaderPacket";
-     }
-     else{
+     } else {
          packetType = "DataPacket";
      }
 
-Packet packet = new Packet(fileNum,packetType,fileContents);
-
-}
+     Packet packet = new Packet(fileNum, packetType, fileContents);
+     return packet;
+ }
 }

@@ -14,11 +14,12 @@ import javax.xml.crypto.Data;
 
 public class DataPacket{
     public getData(){
-        
+        byte[] buf =Packet.fileContents;
+
     }
 
-    public getPacketNumber(){
-        int x = buf[3]*256+buf[4];
+    public static int getPacketNumber(DataPacket p.){
+        int x = Packet.fileContents[3]*256+Packet.fileContents[4];
         return x;
     }
 }

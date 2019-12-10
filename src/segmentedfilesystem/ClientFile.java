@@ -31,8 +31,8 @@ public class ClientFile extends Packet {
 
    while (i.hasNext()){
        Map.Entry m = (Map.Entry)i.next();
-       Byte[] value = m.getValue();
-       Byte[] values += value;
+       byte[] value = m.getValue();
+       byte[] values += value;
    }
     return values;
 
@@ -41,7 +41,7 @@ public class ClientFile extends Packet {
 
     }
 public boolean addPacket(DataPacket p){
-        clientMap.put(p.getPacketNumbers,p.getData)
+        clientMap.put(DataPacket.getPacketNumber(p),Packet.fileContents)
     }
 
 public boolean addPacket(HeaderPacket p ){
