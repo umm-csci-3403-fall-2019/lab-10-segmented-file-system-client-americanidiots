@@ -16,6 +16,10 @@ public class HeaderPacket{
     public byte[] getFileName(HeaderPacket p){
         byte[] buf =Packet.fileContents;
 
+        //Loop through after buf[3] to the end of the data
+        //data.length stuff
+
+        return buf;
     }
 
 }

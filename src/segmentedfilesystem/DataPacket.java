@@ -13,12 +13,16 @@ import javax.sound.sampled.Port;
 import javax.xml.crypto.Data;
 
 public class DataPacket{
-    public getData(){
+    public byte[] getData(){
         byte[] buf =Packet.fileContents;
 
+        //Loop through after buf[4] to the end of the data
+        //data.length stuff
+        return buf;
     }
 
-    public static int getPacketNumber(DataPacket p.){
+    public static int getPacketNumber(DataPacket p){
+
         int x = Packet.fileContents[3]*256+Packet.fileContents[4];
         return x;
     }

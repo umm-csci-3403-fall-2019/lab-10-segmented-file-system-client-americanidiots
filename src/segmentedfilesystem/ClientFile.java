@@ -22,26 +22,26 @@ import javax.xml.crypto.Data;
 //client file should add packet header
 //client file should have packet expecting num
 
-public class ClientFile extends Packet {
+public class ClientFile{
 
 
-   SortedMap<Integer, Byte []> clientMap = new TreeMap<>();
+   SortedMap<Integer, byte []> clientMap = new TreeMap<>();
    Set s =clientMap.entrySet();
    Iterator i=s.iterator();
 
    while (i.hasNext()){
        Map.Entry m = (Map.Entry)i.next();
-       byte[] value = m.getValue();
-       byte[] values += value;
+       Object value = m.getValue();
+       Object values += value;
    }
     return values;
 
  public boolean isDone(){
-        return(Packet.packetTotal==packets.size())
+        return(packetTotal==packets.size())
 
     }
 public boolean addPacket(DataPacket p){
-        clientMap.put(DataPacket.getPacketNumber(p),Packet.fileContents)
+        clientMap.put(DataPacket.getPacketNumber(p),Packet.fileContents);
     }
 
 public boolean addPacket(HeaderPacket p ){
