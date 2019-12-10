@@ -20,6 +20,10 @@ public class Main {
             return;
         }
         DatagramSocket socket = new DatagramSocket();
+    }  
+        writeFile();
+        isDone();
+        socket.close();
     }
 
     private void start() {
