@@ -6,8 +6,12 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.Socket;
 import java.nio.Buffer;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.Iterator; 
+import java.util.Map; 
+import java.util.Set; 
+import java.util.SortedMap; 
+import java.util.TreeMap; 
+  
 
 import javax.sound.sampled.Port;
 import javax.xml.crypto.Data;
@@ -18,12 +22,30 @@ import javax.xml.crypto.Data;
 //client file should add packet header
 //client file should have packet expecting num
 
-public class ClientFile {
-      
-      Map<Integer, Byte []> packets = new HashMap<>();
-      
+public class ClientFile extends Packet {
+
+
+   SortedMap<Integer, Byte []> clientMap = new TreeMap<>();
+   Set s =clientMap.entrySet();
+   Iterator i=s.iterator();
+
+   while (i.hasNext()){
+       Map.Entry m = (Map.Entry)i.next();
+       Byte[] value = m.getValue();
+       Byte[] values += value;
+   }
+    return values;
+
  public boolean isDone(){
         return(Packet.packetTotal==packets.size())
 
     }
+public boolean addPacket(DataPacket p){
+        clientMap.put(p.getPacketNumbers,p.getData)
+    }
+
+public boolean addPacket(HeaderPacket p ){
+    
+    }
+
 }

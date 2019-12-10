@@ -14,6 +14,11 @@ import javax.xml.crypto.Data;
 
 public class DataPacket{
     public getData(){
+        
+    }
 
+    public getPacketNumber(){
+        int x = buf[3]*256+buf[4];
+        return x;
     }
 }

@@ -15,15 +15,30 @@ import javax.xml.crypto.Data;
 //Packet file should make packet
 //packet file should store packet file num
 
-public class Packet{
+public class Packet {
+    int fileNum;
+    String packetType;
+    Byte[] fileContents = new Buffer[1028];
+
+    Packet(int fileNum, String packetType, Byte[] fileContents){
+        this.fileNum = fileNum;
+        this.packetType = packetType;
+        this.fileContents = fileContents;
+    }
+    
  
- public makePacket(byte[] buf)(
-     int x = buf[0];
+ public makePacket(byte[] buf){
+     fileNum=buf[1];
+     fileContents=buf;
 
-     if
+     if(buf[0]%2 == 0){
+         packetType = "HeaderPacket";
+     }
+     else{
+         packetType = "DataPacket";
+     }
 
- )
- public packetFileNum(){
+Packet packet = new Packet(fileNum,packetType,fileContents);
 
- }
+}
 }
