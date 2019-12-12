@@ -14,17 +14,19 @@ import javax.xml.crypto.Data;
 import java.util.Arrays;
 
 public class DataPacket{
-    byte[] packetNumber;
+    int fileNum;
+    int packetNumber;
+    int length;
+    byte[] fileContents;
     byte[] fileData;
 
-    public DataPacket( int packetNumber,byte[] fileData){
-        this.fileData = Arrays.copyOfRange(Packet.fileContents, 4, Packet.fileContents.length);
-        this.packetNumber = Arrays.copyOfRange(Packet.fileContents, 2, 3);
+
+    public DataPacket(int fileNum, byte[] fileContents, int packetNumber, byte[] fileData){
+        this.fileNum=fileNum;
+        this.fileContents=fileContents;
+        this.length=length;
+        this.fileData = Arrays.copyOfRange(fileContents, 4,length);
+        this.packetNumber = fileContents[2]*256+fileContents[3];
     }
 
-    public static byte[] getPacketNumber(Packet packet){
-
-        int x = Packet.fileContents[2]*256+Packet.fileContents[3];
-        return DataPacket.packetNumber;
-    }
 }

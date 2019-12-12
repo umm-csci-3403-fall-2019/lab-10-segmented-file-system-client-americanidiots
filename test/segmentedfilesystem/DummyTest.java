@@ -37,11 +37,8 @@ public class DummyTest {
       Packet.makePacket(packet);
 
       // System.out.println(Packet.fileContents);
-      assertEquals(47, Packet.fileNum);
-      // System.out.println(Packet.fileNum);
-      assertEquals("DataPacket", Packet.packetType);
-      // System.out.println(Packet.packetType);
-
+      assertEquals(47, packet.fileNum);
+      assertEquals(07,packet.packetNumber);
     }
 
     @Test
@@ -57,8 +54,6 @@ public class DummyTest {
 
       Packet.makePacket(packet);
 
-      assertEquals(75, Packet.fileNum);
-      assertEquals("HeaderPacket", Packet.packetType);
+      assertEquals(75,packet.fileNum);
     }
-
 }

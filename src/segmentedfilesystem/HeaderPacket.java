@@ -15,8 +15,14 @@ import java.util.Arrays;
 
 public class HeaderPacket{
     byte[] fileName;
+    byte[] fileContents;
+    int length;
+    int fileNum;
 
-    public HeaderPacket(DatagramPacket packet) {
-        this.fileName = Arrays.copyOfRange(packet.getData(), 2, packet.getLength());
+    public HeaderPacket(int fileNum, byte[] fileContents, byte[] fileName) {
+        this.fileNum=fileNum;
+        this.fileContents=fileContents;
+        this.length=length;
+        this.fileName = Arrays.copyOfRange(fileContents, 2,length);
     }
 }

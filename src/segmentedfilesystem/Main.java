@@ -48,17 +48,16 @@ public class Main {
         //should be data.length instead of buf.length. it is the amount of data in the buffer
         //the buffer size won't change
         socket.receive(packet);
+        
+        String received = new String(packet.getData(), 0, packet.getLength());
 
-
-        Packet.makePacket(packet.getData());
-        int x =Packet.fileNum;
+        Packet.makePacket(packet);
 
         String clientFile = "f"+Integer.toString(x);
 
         clientFile.addPacket(packet);
         
-
-        String received = new String(packet.getData(), 0, packet.getLength());
+        
             
   }
 }

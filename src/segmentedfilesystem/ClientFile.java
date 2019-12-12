@@ -22,6 +22,7 @@ import javax.xml.crypto.Data;
 //client file should have packet expecting num
 
 public class ClientFile {
+    int packetTotal;
 
     public ClientFile (DatagramPacket packets){
    SortedMap<Integer, byte []> clientMap = new TreeMap<>();
@@ -38,14 +39,19 @@ public class ClientFile {
 
  public boolean isDone(){
         return(packetTotal==packets.size())
-
+        
     }
 
-    public boolean addPacket(DataPacket p) {
-        clientMap.put(DataPacket.getPacketNumber(p), Packet.fileContents);
+    public void addPacket(DataPacket p) {
+        clientMap.put(p.packetNumber,p.fileData);
+
+         if(p.fileContents[0] % 4 == 3){
+             packetTotal= p.packetNumber;
+        }
     }
 
-    public boolean addPacket(HeaderPacket p) {
+    public void addPacket(HeaderPacket p) {
+
 
     }
 }

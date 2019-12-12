@@ -7,27 +7,26 @@ import java.net.DatagramPacket;
 
 public class Packet {
     static int fileNum;
-    static String packetType;
+    static int length;
     static byte[] fileContents;
 
-    Packet(int fileNum, String packetType, byte[] fileContents){
+    Packet(int fileNum, byte[] fileContents){
         this.fileNum = fileNum;
-        this.packetType = packetType;
         this.fileContents = fileContents;
     }
     
  
- public static Packet makePacket(byte[] fileContents) {
-     // fileContents = p.getData();
+ public static Packet makePacket(DatagramPacket p) {
+     fileContents = p.getData();
+     length=p.length;
      fileNum = fileContents[1];
 
      if (fileContents[0] % 2 == 0) {
-         packetType = "HeaderPacket";
+         HeaderPacket packet = new HeaderPacket(fileNum,fileContents,fileName,length);
      } else {
-         packetType = "DataPacket";
+         DataPacket packet = new DataPacket(fileNum,fileContents,packetNumber,fileData,length);
      }
 
-     Packet packet = new Packet(fileNum, packetType, fileContents);
      return packet;
  }
 }
