@@ -13,7 +13,7 @@ import javax.sound.sampled.Port;
 import javax.xml.crypto.Data;
 import java.util.Arrays;
 
-public class DataPacket{
+public class DataPacket {
     int fileNum;
     int packetNumber;
     int length;
@@ -21,7 +21,7 @@ public class DataPacket{
     byte[] fileData;
 
 
-    public DataPacket(int fileNum, byte[] fileContents, int packetNumber, byte[] fileData){
+    public DataPacket(int fileNum, byte[] fileContents, int packetNumber, byte[] fileData,int length){
         this.fileNum=fileNum;
         this.fileContents=fileContents;
         this.length=length;

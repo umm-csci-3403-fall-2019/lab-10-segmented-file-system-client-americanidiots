@@ -5,7 +5,7 @@ package segmentedfilesystem;
 
 import java.net.DatagramPacket;
 
-public class Packet {
+public class Packet{
     static int fileNum;
     static int length;
     static byte[] fileContents;
@@ -16,17 +16,25 @@ public class Packet {
     }
     
  
- public static Packet makePacket(DatagramPacket p) {
+ public static DataPacket makeDataPacket(DatagramPacket p, int l) {
      fileContents = p.getData();
-     length=p.length;
+     length =l;
      fileNum = fileContents[1];
 
-     if (fileContents[0] % 2 == 0) {
-         HeaderPacket packet = new HeaderPacket(fileNum,fileContents,fileName,length);
-     } else {
-         DataPacket packet = new DataPacket(fileNum,fileContents,packetNumber,fileData,length);
-     }
-
+     int packetNumber = 0;
+     byte[] fileData = new byte[0];
+     DataPacket packet = new DataPacket(fileNum,fileContents,packetNumber,fileData,length);
      return packet;
  }
+ 
+    public static HeaderPacket makeHeaderPacket(DatagramPacket p, int l) {
+        fileContents = p.getData();
+        length =l;
+        fileNum = fileContents[1];
+
+        byte[] fileName = new byte[0];
+        HeaderPacket packet = new HeaderPacket(fileNum,fileContents,fileName,length);
+
+        return packet;
+    }
 }

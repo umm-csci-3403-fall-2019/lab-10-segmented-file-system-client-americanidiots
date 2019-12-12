@@ -23,8 +23,8 @@ public class Main {
         public static final String ADDRESS = "csci-4409.morris.umn.edu ";
 
         ClientFile f0 = new ClientFile();
-        ClientFile f1 = new ClientFile();
-        Clientfile f2 = new ClientFile();
+        ClientFile f1 = new ClientFile;
+        ClientFile f2 = new ClientFile;
 
     public static void main(String[] args) throws IOException {
 
@@ -48,14 +48,22 @@ public class Main {
         //should be data.length instead of buf.length. it is the amount of data in the buffer
         //the buffer size won't change
         socket.receive(packet);
-        
+
+        if(buf[0] % 2 == 0){
+            Packet.makeHeaderPacket(packet,packet.getLength());
+        }
+        else{
+            Packet.makeDataPacket(packet,packet.getLength());
+        }
+
+
         String received = new String(packet.getData(), 0, packet.getLength());
 
-        Packet.makePacket(packet);
-
+        int x = buf[1];
         String clientFile = "f"+Integer.toString(x);
 
         clientFile.addPacket(packet);
+
         
         
             

@@ -22,36 +22,46 @@ import javax.xml.crypto.Data;
 //client file should have packet expecting num
 
 public class ClientFile {
-    int packetTotal;
+    static int packetTotal;
+    static int packetAdded;
 
-    public ClientFile (DatagramPacket packets){
-   SortedMap<Integer, byte []> clientMap = new TreeMap<>();
-   Set s =clientMap.entrySet();
-   Iterator i=s.iterator();
-   Object value;
+    public ClientFile(DatagramPacket packets) {
+        SortedMap<Integer, byte[]> clientMap = new TreeMap<>();
+        Set s = clientMap.entrySet();
+        Iterator i = s.iterator();
+        Object value;
 
-   while (i.hasNext()){
-       Map.Entry m = (Map.Entry)i.next();
-        value = m.getValue();
-   }
-    return value;
-}
 
- public boolean isDone(){
-        return(packetTotal==packets.size())
-        
     }
 
-    public void addPacket(DataPacket p) {
-        clientMap.put(p.packetNumber,p.fileData);
 
-         if(p.fileContents[0] % 4 == 3){
-             packetTotal= p.packetNumber;
+    public boolean isDone() {
+        return (packetTotal == packetAdded);
+
+    }
+
+    public static void addPacket(DataPacket p) {
+
+        clientMap.put(p.packetNumber, p.fileData);
+        packetAdded += 1;
+
+        if (p.fileContents[0] % 4 == 3) {
+            packetTotal = p.packetNumber;
         }
     }
 
-    public void addPacket(HeaderPacket p) {
+    public static void addPacket(HeaderPacket p) {
 
 
+    }
+
+    public void fileContents() {
+        //This returns all the files when they are done.
+
+        while (i.hasNext()) {
+            Map.Entry m = (Map.Entry) i.next();
+            value = m.getValue();
+        }
+        return value;
     }
 }

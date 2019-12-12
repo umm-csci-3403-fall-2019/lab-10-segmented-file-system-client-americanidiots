@@ -19,7 +19,7 @@ public class HeaderPacket{
     int length;
     int fileNum;
 
-    public HeaderPacket(int fileNum, byte[] fileContents, byte[] fileName) {
+    public HeaderPacket(int fileNum, byte[] fileContents, byte[] fileName,int length) {
         this.fileNum=fileNum;
         this.fileContents=fileContents;
         this.length=length;
