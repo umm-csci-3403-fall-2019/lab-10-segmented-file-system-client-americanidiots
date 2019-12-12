@@ -11,19 +11,20 @@ import java.util.HashMap;
 
 import javax.sound.sampled.Port;
 import javax.xml.crypto.Data;
+import java.util.Arrays;
 
 public class DataPacket{
-    public byte[] getData(){
-        byte[] buf =Packet.fileContents;
+    byte[] packetNumber;
+    byte[] fileData;
 
-        //Loop through after buf[4] to the end of the data
-        //data.length stuff
-        return buf;
+    public DataPacket( int packetNumber,byte[] fileData){
+        this.fileData = Arrays.copyOfRange(Packet.fileContents, 4, Packet.fileContents.length);
+        this.packetNumber = Arrays.copyOfRange(Packet.fileContents, 2, 3);
     }
 
-    public static int getPacketNumber(DataPacket p){
+    public static byte[] getPacketNumber(Packet packet){
 
-        int x = Packet.fileContents[3]*256+Packet.fileContents[4];
-        return x;
+        int x = Packet.fileContents[2]*256+Packet.fileContents[3];
+        return DataPacket.packetNumber;
     }
 }

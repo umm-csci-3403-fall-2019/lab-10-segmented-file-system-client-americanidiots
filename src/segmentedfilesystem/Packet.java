@@ -17,8 +17,8 @@ public class Packet {
     }
     
  
- public static Packet makePacket(DatagramPacket p) {
-     fileContents = p.getData();
+ public static Packet makePacket(byte[] fileContents) {
+     // fileContents = p.getData();
      fileNum = fileContents[1];
 
      if (fileContents[0] % 2 == 0) {

@@ -11,15 +11,12 @@ import java.util.HashMap;
 
 import javax.sound.sampled.Port;
 import javax.xml.crypto.Data;
+import java.util.Arrays;
 
 public class HeaderPacket{
-    public byte[] getFileName(HeaderPacket p){
-        byte[] buf =Packet.fileContents;
+    byte[] fileName;
 
-        //Loop through after buf[3] to the end of the data
-        //data.length stuff
-
-        return buf;
+    public HeaderPacket(DatagramPacket packet) {
+        this.fileName = Arrays.copyOfRange(packet.getData(), 2, packet.getLength());
     }
-
 }
