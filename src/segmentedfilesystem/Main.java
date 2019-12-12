@@ -22,10 +22,6 @@ public class Main {
         public static final int PORT_NUMBER = 6014;
         public static final String ADDRESS = "csci-4409.morris.umn.edu ";
 
-        ClientFile f0 = new ClientFile();
-        ClientFile f1 = new ClientFile;
-        ClientFile f2 = new ClientFile;
-
     public static void main(String[] args) throws IOException {
 
         if (args.length != 1) {
@@ -49,24 +45,10 @@ public class Main {
         //the buffer size won't change
         socket.receive(packet);
 
-        if(buf[0] % 2 == 0){
-            Packet.makeHeaderPacket(packet,packet.getLength());
-        }
-        else{
-            Packet.makeDataPacket(packet,packet.getLength());
-        }
-
+        Packet.makePacket(packet,packet.getLength());
 
         String received = new String(packet.getData(), 0, packet.getLength());
 
-        int x = buf[1];
-        String clientFile = "f"+Integer.toString(x);
-
-        clientFile.addPacket(packet);
-
-        
-        
-            
   }
 }
 

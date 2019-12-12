@@ -16,25 +16,43 @@ public class Packet{
     }
     
  
- public static DataPacket makeDataPacket(DatagramPacket p, int l) {
-     fileContents = p.getData();
-     length =l;
-     fileNum = fileContents[1];
+// public static DataPacket makeDataPacket(DatagramPacket p, int l) {
+//     fileContents = p.getData();
+//     length =l;
+//     fileNum = fileContents[1];
+//
+//     int packetNumber = 0;
+//     byte[] fileData = new byte[0];
+//     DataPacket packet = new DataPacket(fileNum,fileContents,packetNumber,fileData,length);
+//     return packet;
+// }
+//
+//    public static HeaderPacket makeHeaderPacket(DatagramPacket p, int l) {
+//        fileContents = p.getData();
+//        length =l;
+//        fileNum = fileContents[1];
+//
+//        byte[] fileName = new byte[0];
+//        HeaderPacket packet = new HeaderPacket(fileNum,fileContents,fileName,length);
+//
+//        return packet;
+//    }
 
-     int packetNumber = 0;
-     byte[] fileData = new byte[0];
-     DataPacket packet = new DataPacket(fileNum,fileContents,packetNumber,fileData,length);
-     return packet;
- }
- 
-    public static HeaderPacket makeHeaderPacket(DatagramPacket p, int l) {
+    public static void makePacket(DatagramPacket p,int l){
         fileContents = p.getData();
         length =l;
         fileNum = fileContents[1];
 
-        byte[] fileName = new byte[0];
-        HeaderPacket packet = new HeaderPacket(fileNum,fileContents,fileName,length);
-
-        return packet;
+        if(fileContents[0] % 2 == 0){
+            byte[] fileName = new byte[0];
+            HeaderPacket packet = new HeaderPacket(fileNum,fileContents,fileName,length);
+            ClientFile.addHeaderPacket(packet,fileNum);
+        }
+        else{
+            int packetNumber = 0;
+            byte[] fileData = new byte[0];
+            DataPacket packet = new DataPacket(fileNum,fileContents,packetNumber,fileData,length);
+            ClientFile.addDataPacket(packet,fileNum);
+        }
     }
 }

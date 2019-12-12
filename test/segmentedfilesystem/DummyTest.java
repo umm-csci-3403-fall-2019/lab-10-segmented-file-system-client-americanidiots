@@ -34,10 +34,12 @@ public class DummyTest {
         packet[i+4] = stringBytes[i];
       }
 
-      Packet.makePacket(packet);
+
+
+      Packet.makePacket(packet,packet.length);
 
       // System.out.println(Packet.fileContents);
-      assertEquals(47, packet.fileNum);
+      assertEquals(47, fileNum);
       assertEquals(07,packet.packetNumber);
     }
 
