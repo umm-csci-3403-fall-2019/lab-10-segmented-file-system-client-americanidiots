@@ -13,16 +13,10 @@ import javax.sound.sampled.Port;
 import javax.xml.crypto.Data;
 import java.util.Arrays;
 
-public class HeaderPacket{
+public class HeaderPacket extends Packet {
     byte[] fileName;
-    byte[] fileContents;
-    int length;
-    int fileNum;
 
-    public HeaderPacket(int fileNum, byte[] fileContents, byte[] fileName,int length) {
-        this.fileNum=fileNum;
-        this.fileContents=fileContents;
-        this.length=length;
-        this.fileName = Arrays.copyOfRange(fileContents, 2,length);
+    public HeaderPacket() {
+        this.fileName = Arrays.copyOfRange(packet.getData(), 2, packet.getLength());
     }
 }

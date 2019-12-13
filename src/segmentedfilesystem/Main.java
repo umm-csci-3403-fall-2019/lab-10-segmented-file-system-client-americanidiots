@@ -28,48 +28,46 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        if (args.length != 1) {
-            System.out.println("Usage: java QuoteClient <hostname>");
-            return;
+        // if (args.length != 1) {
+        // System.out.println("Usage: java QuoteClient <hostname>");
+        // return;
+        // }
+
+        DatagramSocket socket = new DatagramSocket(PORT_NUMBER);
+
+        byte[] buf; // can be used like an array
+        // ([array], [length of array], [server address], [port to connect to])
+        DatagramPacket packet = new DatagramPacket(buf, PORT_NUMBER);
+        socket.send(packet);
+
+        while (true) {
+            // should be data.length instead of buf.length. it is the amount of data in the
+            // buffer
+            // the buffer size won't change
+            packet = new DatagramPacket(buf, buf.length);
+            socket.receive(packet);
+            // String clientFile = "f" + Integer.toString(x);
+
+            // check the file to make sure if its a header or a data packet
+            if (buf[0] % 2 == 0) {
+                // f0.addHeaderPacket(Packet.makeHeaderPacket(packet, packet.getLength()));
+                // Packet headerPacket = makeHeaderPacket(packet);
+            } else {
+                // Packet.makeDataPacket(packet,packet.getLength());
+                // ClientFile.addDataPacket(Packet.makeDataPacket(packet, packet.getLength()));
+            }
+
+            String received = new String(packet.getData(), 0, packet.getLength());
+
+            int x = buf[1];
+
+            clientFile.addPacket(packet);
         }
 
     }
 
 
-    private void start() throws IOException {
-
-        DatagramSocket socket = new DatagramSocket(PORT_NUMBER);
-
-        byte[] buf = new byte[1028]; // can be used like an array
-        // ([array], [length of array], [server address], [port to connect to])
-        DatagramPacket packet = new DatagramPacket(buf, PORT_NUMBER);
-        socket.send(packet);
-
-        //should be data.length instead of buf.length. it is the amount of data in the buffer
-        //the buffer size won't change
-        socket.receive(packet);
-        String clientFile = "f"+Integer.toString(x);
-        
-        //check the file to make sure if its a header or a data packet
-        if(buf[0] % 2 == 0){
-            f0.addHeaderPacket(Packet.makeHeaderPacket(packet, packet.getLength()));
-        }
-        else{
-            // Packet.makeDataPacket(packet,packet.getLength());
-            ClientFile.addDataPacket(Packet.makeDataPacket(packet, packet.getLength()));
-        }
-
-
-        String received = new String(packet.getData(), 0, packet.getLength());
-
-        int x = buf[1];
-        
-
-        clientFile.addPacket(packet);
-
-        
-        
-            
-  }
+//     private void start() throws IOException {
+//   }
 }
 
