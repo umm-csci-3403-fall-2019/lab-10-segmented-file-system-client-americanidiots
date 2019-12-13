@@ -48,15 +48,6 @@ public class Main {
             socket.receive(packet);
             // String clientFile = "f" + Integer.toString(x);
 
-            // check the file to make sure if its a header or a data packet
-            if (buf[0] % 2 == 0) {
-                // f0.addHeaderPacket(Packet.makeHeaderPacket(packet, packet.getLength()));
-                // Packet headerPacket = makeHeaderPacket(packet);
-            } else {
-                // Packet.makeDataPacket(packet,packet.getLength());
-                // ClientFile.addDataPacket(Packet.makeDataPacket(packet, packet.getLength()));
-            }
-
             String received = new String(packet.getData(), 0, packet.getLength());
 
             int x = buf[1];

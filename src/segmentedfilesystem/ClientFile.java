@@ -47,7 +47,7 @@ public class ClientFile {
 
     }
 
-    public static void addDataPacket(DataPacket p) {
+    public static void addDataPacket(Packet p) {
 
         clientMap.put(p.packetNumber, p.fileData);
         packetAdded += 1;
@@ -57,7 +57,7 @@ public class ClientFile {
         }
     }
 
-    public static void addHeaderPacket(HeaderPacket p) {
+    public static void addHeaderPacket(Packet p) {
 
 
     }
